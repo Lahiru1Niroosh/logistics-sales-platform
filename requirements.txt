@@ -1,0 +1,8 @@
+duckdb
+pandas
+numpy
+plotly
+prophet
+ipykernel
+yfinance
+faker
