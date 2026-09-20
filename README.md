@@ -1,24 +1,41 @@
 # Logistics Sales & Forecasting Platform
 
-An executive operations dashboard for logistics performance, margin stress-testing, and capacity planning. The application combines DuckDB analytics, simulated shipment data, market inputs, forecasting, and an interactive Streamlit interface.
+> An interactive operations intelligence dashboard for logistics performance, margin stress-testing, and capacity planning.
+
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Open%20Dashboard-ff4b4b?style=for-the-badge)](https://7qr53o653pfxp2bxhrsfku.streamlit.app/)
+[![Built with Streamlit](https://img.shields.io/badge/Built%20with-Streamlit-ff4b4b?style=flat-square&logo=streamlit)](https://streamlit.io/)
+[![Python](https://img.shields.io/badge/Python-3.10%2B-3776ab?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
+
+## Live Demo
+
+Explore the deployed dashboard:
+
+**[Open the live Logistics Intelligence Dashboard](https://7qr53o653pfxp2bxhrsfku.streamlit.app/)**
 
 ![Live dashboard preview](assets/dashboard_latest2.png)
 
-## What It Includes
+## Overview
 
-- Regional operating-profit and margin analysis
-- Live fuel-volatility and demand-surge scenarios
-- AI capacity-balancing simulation
-- System-wide margin gauge and operational alerts
-- 30-day shipment forecast view
-- DuckDB warehouse analytics model
+This project models a global logistics network through an executive command-center interface. It combines a DuckDB warehouse, shipment analytics, forecast outputs, and interactive scenario controls so users can explore how demand and fuel conditions affect operational performance.
 
-## Technology
+## Capabilities
 
-- **Frontend:** Streamlit
-- **Analytics:** DuckDB, Pandas, NumPy, Plotly
-- **Forecasting:** Prophet
-- **Data pipeline:** Python, Faker, yfinance
+- **Regional performance:** Compare operating profit across network regions with margin-based visual encoding.
+- **Scenario modeling:** Test demand surges, fuel volatility, and AI capacity balancing in real time.
+- **Executive KPIs:** Monitor revenue, operating profit, system-wide margin, and SLA compliance.
+- **Operational signals:** Surface margin risk, demand pressure, fuel exposure, and data-quality status.
+- **Forecasting:** Display a 30-day shipment-capacity outlook when the forecast artifact is available.
+- **Portable analytics:** Run the complete dashboard from the bundled DuckDB database.
+
+## Technology Stack
+
+| Layer | Tools |
+| --- | --- |
+| Dashboard | Streamlit, Plotly |
+| Analytics | DuckDB, Pandas, NumPy |
+| Forecasting | Prophet |
+| Data pipeline | Python, Faker, yfinance |
+| Storage model | Fact and dimension tables in DuckDB |
 
 ## Run Locally
 
@@ -30,44 +47,42 @@ python -m venv venv
 .\venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 
-python scripts/initialize_db.py
-python scripts/ingest_shipments.py
 streamlit run app.py
 ```
 
-Open `http://localhost:8501` in your browser.
+Open <http://localhost:8501> in your browser.
 
-The checked-in DuckDB file at `data/logistics_warehouse.duckdb` allows the dashboard to run immediately. Re-run the initialization and ingestion scripts only when rebuilding the dataset.
+The repository includes `data/logistics_warehouse.duckdb`, so the dashboard can run immediately. To rebuild the database and regenerate shipment data:
 
-## Project Structure
-
-```text
-app.py                         Streamlit dashboard
-requirements.txt               Python dependencies
-data/logistics_warehouse.duckdb Analytics database
-scripts/initialize_db.py       Database setup
-scripts/ingest_shipments.py    Shipment data ingestion
-scripts/forecast_sales.py      Forecast generation
-assets/dashboard_latest.png    Dashboard preview
+```powershell
+python scripts/initialize_db.py
+python scripts/ingest_shipments.py
+python scripts/forecast_sales.py
 ```
 
-## Publish With Streamlit Community Cloud
+## Repository Layout
 
-The repository is already connected to GitHub at:
+```text
+app.py                              Streamlit application
+requirements.txt                    Runtime dependencies
+data/logistics_warehouse.duckdb    Bundled analytics database
+scripts/initialize_db.py            Database schema setup
+scripts/ingest_shipments.py         Shipment data generation
+scripts/forecast_sales.py           Forecast artifact generation
+assets/dashboard_latest2.png        Current dashboard preview
+```
 
-<https://github.com/Lahiru1Niroosh/logistics-sales-platform>
+## Deployment
 
-1. Push the latest changes to the `main` branch.
-2. Open <https://share.streamlit.io/> and sign in with GitHub.
-3. Select **Create app**.
-4. Choose `Lahiru1Niroosh/logistics-sales-platform`.
-5. Set the branch to `main` and the main file to `app.py`.
-6. Select **Deploy**.
+The live application is hosted on Streamlit Community Cloud and deploys from the `main` branch of the GitHub repository:
 
-The generated `streamlit.app` URL is the public live demo. Keep `app.py`, `requirements.txt`, the `data/` folder, and the DuckDB file in the repository because the hosted dashboard reads the database directly.
+- Repository: <https://github.com/Lahiru1Niroosh/logistics-sales-platform>
+- App: <https://7qr53o653pfxp2bxhrsfku.streamlit.app/>
+
+To deploy your own instance, create an app at <https://share.streamlit.io/>, select this repository, choose the `main` branch, and set `app.py` as the main file.
 
 ## Notes
 
-- The forecast image is optional. The dashboard displays a notice if it has not been generated yet.
-- Do not commit the local `venv/` folder.
-- Do not commit API keys or other secrets.
+- The bundled DuckDB file is required by the deployed dashboard.
+- The forecast image is optional; the app displays a notice when it is unavailable.
+- Keep the local `venv/` directory and secrets out of version control.
