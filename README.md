@@ -2,7 +2,7 @@
 
 An executive operations dashboard for logistics performance, margin stress-testing, and capacity planning. The application combines DuckDB analytics, simulated shipment data, market inputs, forecasting, and an interactive Streamlit interface.
 
-![Live dashboard preview](assets/dashboard_latest1.png)
+![Live dashboard preview](assets/dashboard_latest2.png)
 
 ## What It Includes
 
