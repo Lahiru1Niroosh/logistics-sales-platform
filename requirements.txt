@@ -6,3 +6,4 @@ prophet
 ipykernel
 yfinance
 faker
+streamlit
