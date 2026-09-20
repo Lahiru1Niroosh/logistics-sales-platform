@@ -1,5 +1,6 @@
 venv/
 __pycache__/
 data/*.duckdb
+!data/logistics_warehouse.duckdb
 .DS_Store
 .env
